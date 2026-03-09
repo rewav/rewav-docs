@@ -189,4 +189,59 @@ class Rewav_Docs_File_Scanner {
 		}
 		return false;
 	}
+
+	/**
+	 * Search through all documentation files for a specific query.
+	 *
+	 * @param string $query The search query.
+	 * @return array List of matching files with an added 'relevance' score.
+	 */
+	public function search( $query ) {
+		if ( empty( $query ) ) {
+			return $this->scan();
+		}
+
+		$files = $this->scan();
+		$results = [];
+		$query = strtolower( trim( $query ) );
+
+		global $wp_filesystem;
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+			WP_Filesystem();
+		}
+
+		foreach ( $files as $file ) {
+			$score = 0;
+			$content = $wp_filesystem->get_contents( $file['absolute_path'] );
+
+			if ( false === $content ) {
+				continue;
+			}
+
+			$content = strtolower( $content );
+			$title = strtolower( $file['title'] );
+
+			// Title matches are high relevance
+			if ( str_contains( $title, $query ) ) {
+				$score += 50;
+			}
+
+			// Content matches
+			$occurrences = substr_count( $content, $query );
+			if ( $occurrences > 0 ) {
+				$score += $occurrences * 10;
+				$results[] = array_merge( $file, [ 'relevance' => $score ] );
+			} elseif ( $score > 0 ) {
+				$results[] = array_merge( $file, [ 'relevance' => $score ] );
+			}
+		}
+
+		// Sort by relevance (highest first)
+		usort( $results, function( $a, $b ) {
+			return $b['relevance'] <=> $a['relevance'];
+		} );
+
+		return $results;
+	}
 }

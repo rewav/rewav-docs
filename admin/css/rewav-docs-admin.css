@@ -6,6 +6,23 @@
     margin-top: 20px;
 }
 
+.rewav-docs-search-bar {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.rewav-docs-search-bar .search-box {
+    position: relative;
+    float: none;
+    margin: 0;
+}
+
+.rewav-docs-search-bar input[type="search"] {
+    margin-right: 5px;
+    height: 30px;
+}
+
 .rewav-docs-header {
     margin-bottom: 20px;
 }
