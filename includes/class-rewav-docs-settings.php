@@ -62,6 +62,14 @@ class Rewav_Docs_Settings {
 			'rewav_docs_settings',
 			'rewav_docs_general_section'
 		);
+
+		add_settings_field(
+			'enable_mermaid',
+			__( 'Enable Mermaid.js', 'rewav-docs' ),
+			[ $this, 'enable_mermaid_callback' ],
+			'rewav_docs_settings',
+			'rewav_docs_general_section'
+		);
 	}
 
 	/**
@@ -81,6 +89,8 @@ class Rewav_Docs_Settings {
 			$sanitized['scan_depth'] = absint( $input['scan_depth'] );
 		}
 
+		$sanitized['enable_mermaid'] = isset( $input['enable_mermaid'] ) ? 1 : 0;
+
 		return $sanitized;
 	}
 
@@ -88,7 +98,7 @@ class Rewav_Docs_Settings {
 	 * Callback for the general section.
 	 */
 	public function general_section_callback() {
-		_e( 'Configure the core settings for Rewav Docs.', 'rewav-docs' );
+		_e( 'Configure the core settings for ReWav Docs.', 'rewav-docs' );
 	}
 
 	/**
@@ -119,5 +129,16 @@ class Rewav_Docs_Settings {
 		if ( $disabled ) {
 			echo '<p class="description">' . wp_kses_post( __( 'This setting is currently overridden by the <code>REWAV_DOCS_SCAN_DEPTH</code> constant in wp-config.php.', 'rewav-docs' ) ) . '</p>';
 		}
+	}
+
+	/**
+	 * Callback for the Mermaid toggle.
+	 */
+	public function enable_mermaid_callback() {
+		$options = get_option( 'rewav_docs_options', [] );
+		$enabled = isset( $options['enable_mermaid'] ) ? (bool) $options['enable_mermaid'] : false;
+
+		echo '<input type="checkbox" name="rewav_docs_options[enable_mermaid]" value="1" ' . checked( $enabled, true, false ) . ' />';
+		echo '<p class="description">' . esc_html__( 'Enable support for Mermaid.js diagrams using ```mermaid code blocks.', 'rewav-docs' ) . '</p>';
 	}
 }

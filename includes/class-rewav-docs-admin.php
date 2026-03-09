@@ -42,6 +42,14 @@ class Rewav_Docs_Admin {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'admin/js/rewav-docs-admin.js', [ 'jquery' ], $this->version, false );
+
+		$options = get_option( 'rewav_docs_options', [] );
+		$mermaid_enabled = isset( $options['enable_mermaid'] ) ? (bool) $options['enable_mermaid'] : false;
+
+		if ( $mermaid_enabled && isset( $_GET['page'] ) && 'rewav-docs' === $_GET['page'] && isset( $_GET['doc'] ) ) {
+			wp_enqueue_script( 'mermaid', 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js', [], '11.0.0', true );
+			wp_add_inline_script( 'mermaid', 'mermaid.initialize({ startOnLoad: true });' );
+		}
 	}
 
 	/**
