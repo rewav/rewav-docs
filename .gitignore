@@ -1,0 +1,9 @@
+# WordPress/Plugin default ignores
+.DS_Store
+Thumbs.db
+node_modules/
+vendor/
+*.log
+.idea/
+.vscode/
+.env

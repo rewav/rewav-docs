@@ -1,0 +1,148 @@
+/**
+ * Admin CSS for Rewav Docs.
+ */
+
+.rewav-docs-wrap {
+    margin-top: 20px;
+}
+
+.rewav-docs-header {
+    margin-bottom: 20px;
+}
+
+.rewav-docs-main-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.rewav-docs-sidebar {
+    flex: 0 0 250px;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    padding: 15px;
+}
+
+.rewav-docs-content-area {
+    flex: 1;
+    padding: 20px 40px;
+    max-width: 900px;
+}
+
+.rewav-docs-nav-list,
+.rewav-docs-nav-sublist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rewav-docs-nav-section {
+    margin-bottom: 20px;
+}
+
+.rewav-docs-nav-section-title {
+    display: block;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #646970;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.rewav-docs-nav-item {
+    margin-bottom: 4px;
+}
+
+.rewav-docs-nav-item a {
+    text-decoration: none;
+    color: #2271b1;
+    display: block;
+    padding: 4px 0;
+}
+
+.rewav-docs-nav-item a:hover {
+    color: #135e96;
+}
+
+.rewav-docs-nav-item.is-active a {
+    font-weight: 600;
+    color: #1d2327;
+    border-left: 3px solid #2271b1;
+    padding-left: 8px;
+    margin-left: -11px;
+}
+
+.rewav-docs-content {
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.rewav-docs-content h1,
+.rewav-docs-content h2,
+.rewav-docs-content h3,
+.rewav-docs-content h4,
+.rewav-docs-content h5,
+.rewav-docs-content h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.rewav-docs-content code {
+    background: #f0f0f1;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.rewav-docs-content pre {
+    background: #f6f7f7;
+    padding: 15px;
+    overflow-x: auto;
+    border-radius: 4px;
+    border: 1px solid #dcdcde;
+}
+
+.rewav-docs-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.rewav-docs-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+}
+
+.rewav-docs-content table th,
+.rewav-docs-content table td {
+    border: 1px solid #dcdcde;
+    padding: 8px;
+    text-align: left;
+}
+
+.rewav-docs-content table th {
+    background: #f6f7f7;
+}
+
+.rewav-docs-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #dcdcde;
+}
+
+.breadcrumbs {
+    color: #646970;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 782px) {
+    .rewav-docs-main-layout {
+        flex-direction: column;
+    }
+    .rewav-docs-sidebar {
+        flex: none;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
