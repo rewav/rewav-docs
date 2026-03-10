@@ -44,7 +44,7 @@
 .rewav-docs-content-area {
     flex: 1;
     padding: 20px 40px;
-    max-width: 900px;
+    max-width: 1200px;
 }
 
 .rewav-docs-nav-list,
@@ -94,6 +94,8 @@
 .rewav-docs-content {
     line-height: 1.6;
     font-size: 15px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .rewav-docs-content h1,
@@ -129,6 +131,8 @@
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 1em;
+    display: block;
+    overflow-x: auto;
 }
 
 .rewav-docs-content table th,
