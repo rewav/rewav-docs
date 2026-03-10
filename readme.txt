@@ -4,7 +4,7 @@ Tags: documentation, markdown, docs, admin, developer
 Requires at least: 6.3
 Tested up to: 6.7
 Requires PHP: 8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,15 @@ Absolutely. The plugin has built-in path traversal prevention and uses WordPress
 2. (TBD)
 
 == Changelog ==
+
+= 1.0.1 =
+* Added Full-Text Search for documentation files.
+* Added Mermaid.js support for diagrams.
+* Added Relative Image Resolution for Markdown images.
+* Fixed relative image paths for symlinked environments like Kinsta.
+* Fixed table overflow issues in the admin UI.
+* Increased content max-width for better readability.
+* Added Bitbucket Pipelines for automated ZIP packaging.
 
 = 1.0.0 =
 * Initial release.
