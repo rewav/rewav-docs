@@ -1,0 +1,12 @@
+.git
+.gitignore
+.distignore
+bitbucket-pipelines.yml
+docs/
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.env
+README.md
