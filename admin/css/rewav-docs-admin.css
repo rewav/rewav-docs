@@ -6,25 +6,51 @@
     margin-top: 20px;
 }
 
-.rewav-docs-search-bar {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: flex-end;
+.rewav-docs-search-bar-inline {
+    margin-bottom: 0;
 }
 
-.rewav-docs-search-bar .search-box {
+.rewav-docs-search-bar-inline .search-box {
     position: relative;
     float: none;
     margin: 0;
 }
 
-.rewav-docs-search-bar input[type="search"] {
+.rewav-docs-search-bar-inline input[type="search"] {
     margin-right: 5px;
     height: 30px;
 }
 
-.rewav-docs-header {
+.rewav-docs-header-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
+}
+
+.rewav-docs-header-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.rewav-docs-header-left .breadcrumbs {
+    margin-bottom: 1rem;
+    font-size: 12px;
+}
+
+.rewav-docs-header-left .wp-heading-inline {
+    margin: 0 10px 0 0;
+    padding: 0;
+}
+
+.rewav-docs-header-left .button {
+    vertical-align: middle;
+}
+
+.rewav-docs-header-left-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .rewav-docs-main-layout {
@@ -34,17 +60,18 @@
 }
 
 .rewav-docs-sidebar {
-    flex: 0 0 250px;
+    flex: 0 0 220px;
     background: #fff;
     border: 1px solid #ccd0d4;
     box-shadow: 0 1px 1px rgba(0,0,0,.04);
-    padding: 15px;
+    padding: 10px;
 }
 
 .rewav-docs-content-area {
     flex: 1;
     padding: 20px 40px;
-    max-width: 1200px;
+    max-width: 2600px;
+    margin: 0;
 }
 
 .rewav-docs-nav-list,
@@ -55,7 +82,7 @@
 }
 
 .rewav-docs-nav-section {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .rewav-docs-nav-section-title {
@@ -108,6 +135,10 @@
     margin-bottom: 0.5em;
 }
 
+.rewav-docs-content h1:first-child {
+    margin-top: 0;
+}
+
 .rewav-docs-content code {
     background: #f0f0f1;
     padding: 2px 4px;
@@ -144,6 +175,22 @@
 
 .rewav-docs-content table th {
     background: #f6f7f7;
+}
+
+.rewav-docs-content p {
+    font-size: 1rem;
+}
+
+.rewav-docs-content ul {
+    padding-left: 1.3rem;
+}
+
+.rewav-docs-content ul li {
+    list-style: disc;
+}
+
+.rewav-docs-content ul > li > ul > li {
+    margin-bottom: 0;
 }
 
 .rewav-docs-footer {

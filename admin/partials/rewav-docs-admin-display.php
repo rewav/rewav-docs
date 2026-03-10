@@ -10,16 +10,32 @@ if ( ! current_user_can( apply_filters( 'rewav_docs_view_capability', 'rewav_doc
 ?>
 
 <div class="wrap">
-	<h1 class="wp-heading-inline"><?php echo esc_html( get_admin_page_title() ); ?></h1>
-	<hr class="wp-header-end">
-
 	<?php
 	$scanner = new Rewav_Docs_File_Scanner();
 	$search_query = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
 	$files = empty( $search_query ) ? $scanner->scan() : $scanner->search( $search_query );
-
-	if ( empty( $files ) && empty( $search_query ) ) :
 	?>
+	<div class="rewav-docs-header-inline">
+		<h1 class="wp-heading-inline"><?php echo esc_html( get_admin_page_title() ); ?></h1>
+		<div class="rewav-docs-search-bar-inline">
+			<form action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>" method="get">
+				<input type="hidden" name="page" value="rewav-docs">
+				<p class="search-box">
+					<label class="screen-reader-text" for="rewav-docs-search-input"><?php esc_html_e( 'Search Documentation:', 'rewav-docs' ); ?></label>
+					<input type="search" id="rewav-docs-search-input" name="s" value="<?php echo esc_attr( $search_query ); ?>" placeholder="<?php esc_attr_e( 'Search documents...', 'rewav-docs' ); ?>">
+					<?php submit_button( __( 'Search', 'rewav-docs' ), 'button', '', false ); ?>
+					<?php if ( ! empty( $search_query ) ) : ?>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=rewav-docs' ) ); ?>" class="button button-secondary">
+							<?php esc_html_e( 'Clear', 'rewav-docs' ); ?>
+						</a>
+					<?php endif; ?>
+				</p>
+			</form>
+		</div>
+	</div>
+	<hr class="wp-header-end">
+
+	<?php if ( empty( $files ) && empty( $search_query ) ) : ?>
 		<div class="notice notice-info">
 			<p><?php esc_html_e( 'No documentation files found. Please check your settings and documentation path.', 'rewav-docs' ); ?></p>
 		</div>
@@ -42,22 +58,6 @@ if ( ! current_user_can( apply_filters( 'rewav_docs_view_capability', 'rewav_doc
 			</p>
 		</div>
 	<?php else : ?>
-		<div class="rewav-docs-search-bar">
-			<form action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>" method="get">
-				<input type="hidden" name="page" value="rewav-docs">
-				<p class="search-box">
-					<label class="screen-reader-text" for="rewav-docs-search-input"><?php esc_html_e( 'Search Documentation:', 'rewav-docs' ); ?></label>
-					<input type="search" id="rewav-docs-search-input" name="s" value="<?php echo esc_attr( $search_query ); ?>" placeholder="<?php esc_attr_e( 'Search documents...', 'rewav-docs' ); ?>">
-					<?php submit_button( __( 'Search', 'rewav-docs' ), 'button', '', false ); ?>
-					<?php if ( ! empty( $search_query ) ) : ?>
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=rewav-docs' ) ); ?>" class="button button-secondary">
-							<?php esc_html_e( 'Clear', 'rewav-docs' ); ?>
-						</a>
-					<?php endif; ?>
-				</p>
-			</form>
-		</div>
-
 		<?php if ( ! empty( $search_query ) ) : ?>
 			<h2>
 				<?php

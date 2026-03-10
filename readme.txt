@@ -4,7 +4,7 @@ Tags: documentation, markdown, docs, admin, developer
 Requires at least: 6.3
 Tested up to: 6.7
 Requires PHP: 8.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,12 @@ Absolutely. The plugin has built-in path traversal prevention and uses WordPress
 2. (TBD)
 
 == Changelog ==
+
+= 1.0.2 =
+* Improved Admin UI: Breadcrumbs, Title, and Back Button are now grouped in an inline header.
+* Improved Admin UI: Search Bar is now inline with the Page Title on the index page.
+* Improved Admin UI: Compact sidebar with reduced width and padding.
+* Added security and hosting configuration guide to README.md (Kinsta, Pantheon, WP Engine, etc.).
 
 = 1.0.1 =
 * Added Full-Text Search for documentation files.

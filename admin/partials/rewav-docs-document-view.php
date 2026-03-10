@@ -41,23 +41,26 @@ $rendered_html = $renderer->render( $markdown, $file['absolute_path'] );
 ?>
 
 <div class="wrap rewav-docs-wrap">
-	<nav aria-label="<?php esc_attr_e( 'Documentation breadcrumbs', 'rewav-docs' ); ?>">
-		<p class="breadcrumbs">
-			<a href="<?php echo esc_url( admin_url( 'admin.php?page=rewav-docs' ) ); ?>"><?php esc_html_e( 'Documentation', 'rewav-docs' ); ?></a>
-			&raquo;
-			<?php echo esc_html( $file['section'] ); ?>
-			&raquo;
-			<?php echo esc_html( $file['title'] ); ?>
-		</p>
-	</nav>
-
-	<div class="rewav-docs-header">
-		<h1 class="wp-heading-inline"><?php echo esc_html( $file['title'] ); ?></h1>
-		<a href="<?php echo esc_url( admin_url( 'admin.php?page=rewav-docs' ) ); ?>" class="button button-secondary">
-			<?php esc_html_e( 'Back to All Documents', 'rewav-docs' ); ?>
-		</a>
-		<hr class="wp-header-end">
+	<div class="rewav-docs-header-inline">
+		<div class="rewav-docs-header-left">
+			<nav aria-label="<?php esc_attr_e( 'Documentation breadcrumbs', 'rewav-docs' ); ?>">
+				<p class="breadcrumbs">
+					<a href="<?php echo esc_url( admin_url( 'admin.php?page=rewav-docs' ) ); ?>"><?php esc_html_e( 'Documentation', 'rewav-docs' ); ?></a>
+					&raquo;
+					<?php echo esc_html( $file['section'] ); ?>
+					&raquo;
+					<?php echo esc_html( $file['title'] ); ?>
+				</p>
+			</nav>
+			<div class="rewav-docs-header-left-row">
+				<h1 class="wp-heading-inline"><?php echo esc_html( $file['title'] ); ?></h1>
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=rewav-docs' ) ); ?>" class="button button-secondary">
+					<?php esc_html_e( 'Back to All Documents', 'rewav-docs' ); ?>
+				</a>
+			</div>
+		</div>
 	</div>
+	<hr class="wp-header-end">
 
 	<div class="rewav-docs-main-layout">
 		<aside class="rewav-docs-sidebar">
