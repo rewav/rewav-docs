@@ -72,7 +72,11 @@ class Rewav_Docs_Markdown_Renderer {
 		// Get Uploads URL and Path
 		$uploads = wp_upload_dir();
 		$upload_base_url = $uploads['baseurl'];
-		$upload_base_path = $uploads['basedir'];
+		$upload_base_path = realpath( $uploads['basedir'] );
+
+		if ( false === $upload_base_path ) {
+			return $html;
+		}
 
 		return preg_replace_callback(
 			'/<img\s+([^>]*?)src=["\']([^"\']+)["\']([^>]*?)>/i',
@@ -90,10 +94,10 @@ class Rewav_Docs_Markdown_Renderer {
 				// Ensure the image is within the documentation root (security)
 				if ( $image_path && 0 === strpos( $image_path, $docs_root ) ) {
 					// Map filesystem path to URL
-					// We assume the docs are within the uploads directory or somewhere accessible via URL.
-					// If they are in uploads, we can just replace the base path with the base URL.
+					// We compare the realpath of the image with the realpath of the uploads dir
 					if ( 0 === strpos( $image_path, $upload_base_path ) ) {
-						$image_url = str_replace( $upload_base_path, $upload_base_url, $image_path );
+						$relative_to_uploads = substr( $image_path, strlen( $upload_base_path ) );
+						$image_url = $upload_base_url . str_replace( DIRECTORY_SEPARATOR, '/', $relative_to_uploads );
 						return sprintf( '<img %ssrc="%s"%s>', $matches[1], esc_url( $image_url ), $matches[3] );
 					}
 				}
