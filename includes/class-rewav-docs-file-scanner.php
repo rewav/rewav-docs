@@ -109,6 +109,14 @@ class Rewav_Docs_File_Scanner {
 			}
 		}
 
+		// Sort by Section A-Z, then Title A-Z
+		usort( $files, function( $a, $b ) {
+			if ( $a['section'] !== $b['section'] ) {
+				return strcasecmp( $a['section'], $b['section'] );
+			}
+			return strcasecmp( $a['title'], $b['title'] );
+		} );
+
 		$files = apply_filters( 'rewav_docs_files', $files );
 		set_transient( self::TRANSIENT_KEY, $files, apply_filters( 'rewav_docs_cache_ttl', 300 ) );
 

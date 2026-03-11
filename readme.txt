@@ -37,6 +37,9 @@ Absolutely. The plugin has built-in path traversal prevention and uses WordPress
 == Changelog ==
 
 = 1.0.3 =
+* Documentation ordering: Files are now sorted first by Section (A-Z) and then by Title (A-Z) for better predictability.
+
+= 1.0.2 =
 * Improved Admin UI: Breadcrumbs, Title, and Back Button are now grouped in an inline header.
 * Improved Admin UI: Search Bar is now inline with the Page Title on the index page.
 * Improved Admin UI: Compact sidebar with reduced width and padding.
