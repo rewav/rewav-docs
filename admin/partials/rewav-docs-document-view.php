@@ -7,7 +7,10 @@ if ( ! current_user_can( apply_filters( 'rewav_docs_view_capability', 'rewav_doc
 	wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'rewav-docs' ) );
 }
 
-$doc_slug = isset( $_GET['doc'] ) ? sanitize_text_field( wp_unslash( $_GET['doc'] ) ) : '';
+if ( empty( $doc_slug ) ) {
+	$doc_slug = isset( $_GET['doc'] ) ? sanitize_text_field( wp_unslash( $_GET['doc'] ) ) : '';
+}
+
 $scanner = new Rewav_Docs_File_Scanner();
 $file = $scanner->get_file_by_slug( $doc_slug );
 

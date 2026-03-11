@@ -81,7 +81,9 @@ if ( ! current_user_can( apply_filters( 'rewav_docs_view_capability', 'rewav_doc
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ( $files as $file ) : ?>
+				<?php foreach ( $files as $file ) : 
+					if ( 'index.md' === $file['slug'] ) continue;
+				?>
 					<tr>
 						<td>
 							<strong>

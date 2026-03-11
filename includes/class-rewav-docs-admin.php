@@ -59,6 +59,10 @@ class Rewav_Docs_Admin {
 		$view_capability = apply_filters( 'rewav_docs_view_capability', 'rewav_docs_view' );
 		$manage_capability = apply_filters( 'rewav_docs_manage_capability', 'rewav_docs_manage' );
 
+		$scanner = new Rewav_Docs_File_Scanner();
+		$docs_path = $scanner->get_docs_path();
+		$has_index = file_exists( $docs_path . '/index.md' );
+
 		add_menu_page(
 			__( 'Documentation', 'rewav-docs' ),
 			__( 'Documentation', 'rewav-docs' ),
@@ -69,14 +73,34 @@ class Rewav_Docs_Admin {
 			apply_filters( 'rewav_docs_menu_position', 3 )
 		);
 
-		add_submenu_page(
-			$this->plugin_name,
-			__( 'All Documents', 'rewav-docs' ),
-			__( 'All Documents', 'rewav-docs' ),
-			$view_capability,
-			$this->plugin_name,
-			[ $this, 'display_plugin_admin_page' ]
-		);
+		if ( $has_index ) {
+			add_submenu_page(
+				$this->plugin_name,
+				__( 'Home', 'rewav-docs' ),
+				__( 'Home', 'rewav-docs' ),
+				$view_capability,
+				$this->plugin_name,
+				[ $this, 'display_plugin_admin_page' ]
+			);
+
+			add_submenu_page(
+				$this->plugin_name,
+				__( 'All Documents', 'rewav-docs' ),
+				__( 'All Documents', 'rewav-docs' ),
+				$view_capability,
+				$this->plugin_name . '-all',
+				[ $this, 'display_plugin_admin_page' ]
+			);
+		} else {
+			add_submenu_page(
+				$this->plugin_name,
+				__( 'All Documents', 'rewav-docs' ),
+				__( 'All Documents', 'rewav-docs' ),
+				$view_capability,
+				$this->plugin_name,
+				[ $this, 'display_plugin_admin_page' ]
+			);
+		}
 
 		add_submenu_page(
 			$this->plugin_name,
@@ -122,7 +146,19 @@ class Rewav_Docs_Admin {
 	 * Render the admin page for this plugin.
 	 */
 	public function display_plugin_admin_page() {
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 		$doc_slug = isset( $_GET['doc'] ) ? sanitize_text_field( wp_unslash( $_GET['doc'] ) ) : '';
+
+		$scanner = new Rewav_Docs_File_Scanner();
+		$docs_path = $scanner->get_docs_path();
+		$has_index = file_exists( $docs_path . '/index.md' );
+
+		// If on the main documentation page or Home submenu
+		if ( $this->plugin_name === $page ) {
+			if ( empty( $doc_slug ) && $has_index ) {
+				$doc_slug = 'index.md'; // Default to index.md
+			}
+		}
 
 		if ( ! empty( $doc_slug ) ) {
 			include_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/rewav-docs-document-view.php';

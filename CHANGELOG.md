@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] - 2026-03-09
+
+### Fixed
+- Home page loading: Fixed a bug where `index.md` would not load correctly due to variable scope overwriting in the template partial.
+
+## [1.0.4] - 2026-03-09
+
+### Added
+- Home page support: If `index.md` exists in the root of the documentation folder, it becomes the default landing page.
+- Submenu structure adjustment: Displays "Home", "All Documents", and "Settings" when an index file is present.
+
+### Changed
+- Refined "All Documents" list to exclude `index.md` when it is serving as the home page.
+
 ## [1.0.3] - 2026-03-09
 
 ### Changed

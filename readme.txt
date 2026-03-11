@@ -4,7 +4,7 @@ Tags: documentation, markdown, docs, admin, developer
 Requires at least: 6.3
 Tested up to: 6.7
 Requires PHP: 8.1
-Stable tag: 1.0.3
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,14 @@ Absolutely. The plugin has built-in path traversal prevention and uses WordPress
 2. (TBD)
 
 == Changelog ==
+
+= 1.0.5 =
+* Fixed bug where Home page (`index.md`) would not render correctly.
+
+= 1.0.4 =
+* Added Home page feature: If `index.md` exists in the root folder, it is rendered as the starting page.
+* Added "Home" and "All Documents" submenus when `index.md` is present.
+* Excluded `index.md` from the "All Documents" list to avoid duplication.
 
 = 1.0.3 =
 * Documentation ordering: Files are now sorted first by Section (A-Z) and then by Title (A-Z) for better predictability.
